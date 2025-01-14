@@ -1,49 +1,61 @@
-// main.cpp
-#include "hash.h"
+//Quadratic Probing with Modulo Hashing
+
+//Main.cpp code 
+
+#include <iostream>
+#include "hashquadratic.h"
+using namespace std;
 
 int main() {
-    int size;
-    cout << "Enter the size of the hash table: ";
-    cin >> size;
-    HashTable hashTable(size);
+    // Create a hash table with an initial size of 10
+    HashTable ht(10);
+    int choice;
 
-    int choice, key;
-    do {
-        cout << "\nMenu:\n";
-        cout << "1. Insert\n";
-        cout << "2. Search\n";
-        cout << "3. Delete\n";
-        cout << "4. Display\n";
-        cout << "5. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
+    // Main loop that displays the menu and handles user choices
+    while (true) {
+        // Display the menu options
+         cout << "1. Insert" <<  endl;
+         cout << "2. Search" <<  endl;
+         cout << "3. Delete" <<  endl;
+         cout << "4. Output" <<  endl;
+         cout << "5. Exit" <<  endl;
+         cout << "Choose an Option: ";
+         cin >> choice;
 
+        // Handle the user's choice
         switch (choice) {
-        case 1:
-            cout << "Enter key to insert: ";
-            cin >> key;
-            hashTable.insert(key);
+        case 1: { // Insert an element into the hash table
+            int data;
+             cout << "Enter Integer to insert: ";
+             cin >> data;
+            ht.insert(data);
             break;
-        case 2:
-            cout << "Enter key to search: ";
-            cin >> key;
-            hashTable.search(key);
-            break;
-        case 3:
-            cout << "Enter key to delete: ";
-            cin >> key;
-            hashTable.remove(key);
-            break;
-        case 4:
-            hashTable.display();
-            break;
-        case 5:
-            cout << "Exiting..." << endl;
-            break;
-        default:
-            cout << "Invalid choice! Please try again." << endl;
         }
-    } while (choice != 5);
-
-    return 0;
+        case 2: { // Search for an element in the hash table
+            int data;
+             cout << "Enter Integer to search: ";
+             cin >> data;
+            ht.search(data);
+            break;
+        }
+        case 3: { // Delete an element from the hash table
+            int data;
+             cout << "Enter integer to delete: ";
+             cin >> data;
+            ht.deleteKey(data);
+            break;
+        }
+        /*case 4: { // Display the contents of the hash table
+            ht.display();
+            break;
+        }*/
+        case 5: { // Exit the program
+             cout << "Goodbye" <<  endl;
+            return 0;
+        }
+        default: { // Handle invalid user input
+             cout << "Invalid choice. Please try  again." <<  endl;
+        }
+        }
+    }
 }
